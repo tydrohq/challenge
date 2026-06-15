@@ -1,0 +1,13 @@
+{
+  "_comment": "Tydro on Ink mainnet (chainId 57073). Only the addressesProvider, dataProvider and oracleMigrationTarget are read by scripts/tests; pool/configurator/oracle/aclManager/aclAdmin are DERIVED at runtime from the provider and listed here for reference only. All values verified on-chain at the pinned fork block.",
+  "addressesProvider": "0x4172E6aAEC070ACB31aaCE343A58c93E4C70f44D",
+  "dataProvider": "0x96086C25d13943C80Ff9a19791a40Df6aFC08328",
+  "oracleMigrationTarget": "0x4200000000000000000000000000000000000006",
+  "_derived_for_reference_only": {
+    "pool": "0x2816cf15F6d2A220E789aA011D5EE4eB6c47FEbA",
+    "poolConfigurator": "0x4f221e5c0B7103f7e3291E10097de6D9e3BfC02d",
+    "priceOracle": "0x4758213271BFdC72224A7a8742dC865fC97756e1",
+    "aclManager": "0x86E2938daE289763D4e09a7e42c5cCcA62Cf9809",
+    "aclAdmin": "0x1dF462e2712496373A347f8ad10802a5E95f053D"
+  }
+}
