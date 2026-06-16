@@ -1,0 +1,4 @@
+[submodule "lib/aave-proposals-v3"]
+	path = lib/aave-proposals-v3
+	url = https://github.com/aave-dao/aave-proposals-v3
+	shallow = true

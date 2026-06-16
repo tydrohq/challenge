@@ -9,5 +9,40 @@
     "priceOracle": "0x4758213271BFdC72224A7a8742dC865fC97756e1",
     "aclManager": "0x86E2938daE289763D4e09a7e42c5cCcA62Cf9809",
     "aclAdmin": "0x1dF462e2712496373A347f8ad10802a5E95f053D"
+  },
+  "_abi_hints": {
+    "_comment": "Reference only — NOT read by scripts/tests. Human-readable signatures for ad-hoc `cast` against the running fork, e.g. `cast call $POOL 'getReservesList()(address[])'`. Full Solidity interfaces live in src/interfaces/IAaveV3.sol; this is intentionally a small cast cheat-sheet, not a duplicated ABI.",
+    "pool": [
+      "getReservesList()(address[])",
+      "getUserAccountData(address)(uint256,uint256,uint256,uint256,uint256,uint256)",
+      "supply(address,uint256,address,uint16)",
+      "withdraw(address,uint256,address)(uint256)",
+      "borrow(address,uint256,uint256,uint16,address)",
+      "setUserUseReserveAsCollateral(address,bool)"
+    ],
+    "priceOracle": [
+      "getAssetPrice(address)(uint256)",
+      "getSourceOfAsset(address)(address)",
+      "setAssetSources(address[],address[])",
+      "BASE_CURRENCY_UNIT()(uint256)"
+    ],
+    "poolConfigurator": [
+      "configureReserveAsCollateral(address,uint256,uint256,uint256)",
+      "setReserveFactor(address,uint256)",
+      "setSupplyCap(address,uint256)",
+      "setBorrowCap(address,uint256)",
+      "setReserveBorrowing(address,bool)"
+    ],
+    "aclManager": [
+      "isPoolAdmin(address)(bool)",
+      "addPoolAdmin(address)",
+      "hasRole(bytes32,address)(bool)",
+      "DEFAULT_ADMIN_ROLE()(bytes32)"
+    ],
+    "dataProvider": [
+      "getReserveConfigurationData(address)(uint256,uint256,uint256,uint256,uint256,bool,bool,bool,bool,bool)",
+      "getReserveTokensAddresses(address)(address,address,address)",
+      "getReserveCaps(address)(uint256,uint256)"
+    ]
   }
 }

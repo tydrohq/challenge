@@ -14,11 +14,24 @@ your reasoning as you go — how you think is as important as how much you finis
 
 ---
 
+## Requirements
+
+- **[Foundry](https://getfoundry.sh)** (`forge`, `cast`, `anvil`) — the toolchain everything runs on:
+
+  ```bash
+  curl -L https://foundry.sh | bash && foundryup
+  ```
+- **[Node.js](https://nodejs.org)** — used by `script/setup.sh` to read `addresses.json` (live-fork path only).
+- **[git](https://git-scm.com/downloads)** with submodule support — for `lib/aave-proposals-v3` (`git submodule update --init`).
+- A reachable **Ink RPC endpoint** — a working public default is already in `.env.example`.
+
+---
+
 ## Setup
 
 ```bash
 cp .env.example .env          # working public-RPC defaults are filled in
-forge install                 # (deps are vendored; this is a no-op if so)
+forge install                 # vendored deps are a no-op; also inits the aave-proposals-v3 submodule
 
 # Option A — live anvil fork (one command: fork + roles + mocks)
 ./script/setup.sh             # leaves anvil running at 127.0.0.1:8545
@@ -47,8 +60,10 @@ left to you. Run any of them with `forge script script/tasks/<file>`.
    Change an existing reserve's collateral parameters and at least one cap.
 
 3. **List a new market** — `script/tasks/03_ListMarket.s.sol`
-   List a fresh asset. The `initReserves` plumbing is provided by `ListingHelper.listMarket`;
-   you choose and justify the `ListingParams`.
+   List **DEMO**, a brand-new, thinly-traded token being onboarded for the first time. In
+   volatility terms, think of it as comparable to a small-cap memecoin (PEPE-class price
+   swings). The `initReserves` plumbing is provided by `ListingHelper.listMarket`; you choose
+   and justify the full `ListingParams`.
 
 4. **Build an ERC-4626 vault** — `src/vault/PortfolioVault.sol` + `script/tasks/04_PortfolioVault.s.sol`
    Implement a vault that holds a fixed-weight portfolio across two markets (the new market
@@ -76,7 +91,24 @@ script/
   00_DeployHarness.s.sol      deploys the mocks
   setup.sh                    one-command live anvil setup
   tasks/                      the four task stubs (above)
+lib/
+  aave-proposals-v3/          Aave DAO governance-payload templates (git submodule)
 addresses.json / .env.example  config
+```
+
+## Generating the oracle-migration payload (Task 1)
+
+`lib/aave-proposals-v3` (git submodule) vendors the Aave DAO's
+[aave-proposals-v3](https://github.com/aave-dao/aave-proposals-v3) governance templates. Tydro
+is an Aave v3 market, so the same payload pattern Aave uses for production listing / oracle
+changes can generate the Task-1 oracle migration (the `setAssetSources` change) in the
+canonical Aave shape rather than an ad-hoc script.
+
+It is a **reference / tooling** dependency: nothing under `src/` or `script/` imports it, so it
+does not affect `forge build` / `forge test`. On a fresh clone, initialise it with:
+
+```bash
+git submodule update --init lib/aave-proposals-v3   # or: forge install
 ```
 
 ## Notes / gotchas

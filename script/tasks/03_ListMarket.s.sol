@@ -30,8 +30,9 @@ contract ListMarket is Script, ForkBase {
         BetterOracle source = new BetterOracle(1e8, 8); // $1.00
 
         // ================= TODO(candidate) =================
-        // Fill in params you can defend for a brand-new, low-liquidity asset.
-        // (Conservative is usually right; consider listing non-collateral first.)
+        // Asset: DEMO is a brand-new, thinly-traded token being listed for the first time.
+        // In volatility terms, treat it as comparable to a small-cap memecoin (PEPE-class
+        // price swings). Choose and justify the full ListingParams below.
         ListingParams memory params = ListingParams({
             ltv: 0, // TODO
             liquidationThreshold: 0, // TODO
