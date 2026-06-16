@@ -23,10 +23,14 @@ contract MigrateOracle is Script, ForkBase {
         createForkAndLoad();
         grantRolesPranked(candidate);
 
+        // Seeded positions collateralized by `target` — watch their HF recompute below.
+        PositionBook memory book = seedPositionBook();
+
         address target = oracleMigrationTarget;
         console.log("target              ", target);
         console.log("source (before)     ", oracle.getSourceOfAsset(target));
         console.log("price  (before)     ", oracle.getAssetPrice(target));
+        logBook("before", book);
 
         vm.startPrank(candidate);
         // ================= TODO(candidate) =================
@@ -43,7 +47,9 @@ contract MigrateOracle is Script, ForkBase {
 
         console.log("source (after)      ", oracle.getSourceOfAsset(target));
         console.log("price  (after)      ", oracle.getAssetPrice(target));
-        // Tip: set up a borrower before/after and watch getUserAccountData(...).healthFactor
-        // to prove the price feeds risk, not just storage.
+        logBook("after", book);
+        // The seeded book above is your proof that the price feeds RISK, not just storage:
+        // a clean (price-continuous) migration leaves every HF unchanged, while a mispriced or
+        // wrong-decimals feed moves them. Drop your new feed's price to watch HFs fall.
     }
 }

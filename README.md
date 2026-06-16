@@ -57,7 +57,10 @@ left to you. Run any of them with `forge script script/tasks/<file>`.
    Repoint the price source for the WETH market (`ORACLE_MIGRATION_TARGET`) to a new feed.
 
 2. **Adjust listing params** — `script/tasks/02_AdjustParams.s.sol`
-   Change an existing reserve's collateral parameters and at least one cap.
+   This follows your oracle migration. The new feed is more conservative and updates more
+   frequently; given recent volatility, propose the risk parameters you'd ship for the WETH
+   market (collateral params and at least one cap). **There are existing positions on this
+   market** — reason about who your change affects, and verify against them.
 
 3. **List a new market** — `script/tasks/03_ListMarket.s.sol`
    List **DEMO**, a brand-new, thinly-traded token being onboarded for the first time. In
@@ -71,6 +74,13 @@ left to you. Run any of them with `forge script script/tasks/<file>`.
 
 You're free to work in tests instead of scripts if you prefer — whatever lets you move fast
 and show your work.
+
+> **Positions to work with.** The harness seeds a deterministic position book on the target
+> (WETH) market — one comfortable position (HF ≈ 2.0) and one near the edge (HF ≈ 1.15), backed
+> by seeded borrow-side liquidity — so tasks 1 and 2 have real positions to verify against.
+> `ReadState` prints them. Your wallet is a fresh EOA with no token balances; to open your
+> *own* position you can `deal` yourself collateral first, but the seeded book already exists to
+> reason about, so that's optional.
 
 ---
 

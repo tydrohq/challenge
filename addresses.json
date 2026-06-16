@@ -44,5 +44,15 @@
       "getReserveTokensAddresses(address)(address,address,address)",
       "getReserveCaps(address)(uint256,uint256)"
     ]
+  },
+  "seed": {
+    "_comment": "Position-book seeding (ForkBase.seedPositionBook). Read by scripts/tests; overridable per-key via SEED_* env vars; unset/zero fails loudly. Collateral is oracleMigrationTarget. borrowAsset defaults to USDC (deep, borrowing-enabled stable). lp/borrower1/borrower2 are anvil accounts #1/#2/#3 (public test keys) — deliberately NOT the candidate's account 0. HFs are basis points (10000 = 1.0): one comfortable, one near the edge.",
+    "borrowAsset": "0x2D270e6886d130D724215A266106e6832161EAEd",
+    "lp": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+    "borrower1": "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+    "borrower2": "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+    "targetHfBps1": 20000,
+    "targetHfBps2": 11500,
+    "collateralWholeTokens": 10
   }
 }

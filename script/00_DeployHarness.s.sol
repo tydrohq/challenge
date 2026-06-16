@@ -33,6 +33,12 @@ contract DeployHarness is Script, ForkBase {
 
         vm.stopBroadcast();
 
+        // Seed the position book against the target market so tasks 1 & 2 have real positions
+        // to verify against (§3a). Uses cheatcodes (deal/prank) on the in-process fork; this is
+        // the same deterministic book the createSelectFork entrypoints (ReadState, the task
+        // scripts, tests) reproduce at the pinned block.
+        PositionBook memory book = seedPositionBook();
+
         console.log("=== Harness deployed ===");
         console.log("candidate EOA          ", candidate);
         console.log("MockERC20 (DEMO)       ", address(demo));
@@ -42,5 +48,9 @@ contract DeployHarness is Script, ForkBase {
         console.log("");
         console.log("oracleMigrationTarget  ", oracleMigrationTarget);
         console.log("(roles granted to candidate by setup.sh / ForkBase)");
+        console.log("");
+        console.log("=== Seeded position book ===");
+        console.log("borrow asset / LP liquidity:", book.borrowAsset, book.lpLiquidity);
+        logBook("seeded", book);
     }
 }

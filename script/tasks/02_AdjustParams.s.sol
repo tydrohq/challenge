@@ -16,8 +16,14 @@ contract AdjustParams is Script, ForkBase {
         createForkAndLoad();
         grantRolesPranked(candidate);
 
+        // Existing positions on this market — reason about (and verify against) who your
+        // parameter change affects. Lowering LTV leaves these HFs untouched (only new borrows
+        // are constrained); lowering the liquidation threshold drops them, toward liquidation.
+        PositionBook memory book = seedPositionBook();
+
         address asset = oracleMigrationTarget;
         _print("before", asset);
+        logBook("before", book);
 
         vm.startPrank(candidate);
         // ================= TODO(candidate) =================
@@ -32,6 +38,7 @@ contract AdjustParams is Script, ForkBase {
         vm.stopPrank();
 
         _print("after", asset);
+        logBook("after", book);
     }
 
     function _print(string memory tag, address asset) internal view {
