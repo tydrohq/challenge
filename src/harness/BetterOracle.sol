@@ -7,7 +7,7 @@ pragma solidity ^0.8.20;
 ///         for any newly listed market. Prices are denominated in USD at 8 decimals to match
 ///         Aave's base currency (BASE_CURRENCY_UNIT == 1e8 on Tydro). The hiring team /
 ///         candidate can move the price at runtime via {setAnswer} to exercise depeg /
-///         oracle-migration / vault-revaluation scenarios.
+///         oracle-migration / price-shock scenarios.
 contract BetterOracle {
     int256 private _answer;
     uint8 public immutable decimals;

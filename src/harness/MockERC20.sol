@@ -4,9 +4,8 @@ pragma solidity ^0.8.20;
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 /// @title MockERC20
-/// @notice Mintable test token used as the underlying for the new market (and as the
-///         vault's base asset). Decimals are configurable; the harness uses 18 to avoid
-///         incidental 6-decimal complexity.
+/// @notice Mintable test token used as the underlying for the new market. Decimals are
+///         configurable; the harness uses 18 to avoid incidental 6-decimal complexity.
 contract MockERC20 is ERC20 {
     uint8 private immutable _decimals;
 

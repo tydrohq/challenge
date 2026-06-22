@@ -88,15 +88,13 @@ src/
   harness/
     BetterOracle.sol          settable Chainlink-style price feed (8-dec USD)
     MockERC20.sol             mintable 18-dec test token
-    MockSwapRouter.sol        oracle-priced base<->WETH swap (for the vault)
     ListingHelper.sol         listMarket(...) — version-robust new-market plumbing
-  vault/PortfolioVault.sol    STARTER (implement the TODOs)
 script/
   ForkBase.sol                loads addresses, derives contracts, grants your roles
   ReadState.s.sol             prints reserves + sources + config
   00_DeployHarness.s.sol      deploys the mocks
   setup.sh                    one-command live anvil setup
-  tasks/                      the four task stubs (above)
+  tasks/                      the three task stubs (above)
 lib/
   aave-proposals-v3/          Aave DAO governance-payload templates (git submodule)
 addresses.json / .env.example  config
