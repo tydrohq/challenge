@@ -68,10 +68,6 @@ left to you. Run any of them with `forge script script/tasks/<file>`.
    swings). The `initReserves` plumbing is provided by `ListingHelper.listMarket`; you choose
    and justify the full `ListingParams`.
 
-4. **Build an ERC-4626 vault** — `src/vault/PortfolioVault.sol` + `script/tasks/04_PortfolioVault.s.sol`
-   Implement a vault that holds a fixed-weight portfolio across two markets (the new market
-   and the WETH market). Deploy and exercise it with the script.
-
 You're free to work in tests instead of scripts if you prefer — whatever lets you move fast
 and show your work.
 
