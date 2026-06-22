@@ -117,8 +117,6 @@ git submodule update --init lib/aave-proposals-v3   # or: forge install
 
 ## Notes / gotchas
 
-- Base currency is **USD at 8 decimals** (`BASE_CURRENCY_UNIT == 1e8`). All feed prices are
-  8-dec. Keep test tokens 18-dec to avoid incidental decimals work.
 - The new-market token implementations are **reused from an existing reserve** so they match
   Tydro's exact Aave version — that's what `ListingHelper` does for you. Don't deploy fresh
   token/IRM implementations.
